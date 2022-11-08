@@ -1,6 +1,7 @@
 package com.selle.appjogares;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,13 +11,14 @@ import android.widget.TextView;
 
 import java.util.List;
 
+// Adapter serve para receber os dados 'crus' e formatá-los no layout desejado
 public class JogadorAdapter extends BaseAdapter {
 
     private Context context;
     private List<Jogador> jogadores;
     private LayoutInflater inflater;
 
-    public JogadorAdapter(Context context, List<Jogador> listaJogadores, ) {
+    public JogadorAdapter(Context context, List<Jogador> listaJogadores) {
         this.context = context;
         this.jogadores = listaJogadores;
         this.inflater = LayoutInflater.from(this.context);
@@ -54,11 +56,18 @@ public class JogadorAdapter extends BaseAdapter {
             item = (SuportItem) view.getTag();
         }
 
+        Jogador j = jogadores.get(i);
+        item.tvNome.setText(j.nome);
+        item.tvNumero.setText( String.valueOf(j.numero));
+        if ( i % 2 == 0){
+            item.layoutFundo.setBackgroundColor(Color.LTGRAY);
+        }else {
+            item.layoutFundo.setBackgroundColor(Color.rgb(255,255,255));
+        }
 
         return view;
     }
-// preencher os campos com os valores dos jogadores
-    // pedir para o professor explicar novamente o que significa o inflate!
+
 
 
 // Classe de suporte: classe dentro de outra classe
